@@ -162,7 +162,7 @@ Após iniciar a `ApiGateway`, a documentação da API estará disponível em:
 
 ### Exemplo de Uso (via API Gateway)
 
-1.  **Login:** `POST /api/auth/login` com corpo `{"userId": "u1", "username": "test", "roles": ["read", "write"]}` para obter um token JWT.
+1.  **Login:** `POST /api/auth/login` com corpo `{"id": "u1", "name": "test", "roles": ["read", "write"]}` para obter um token JWT.
 2.  **Criar Cliente:** `POST /api/client` com header `Authorization: Bearer <token>` e corpo `{"nome": "Novo Cliente", "email": "cliente@exemplo.com"}`.
 3.  **Adicionar Favorito:** `POST /api/favorite` com header `Authorization: Bearer <token>` e corpo `{"clientId": "id_do_cliente_criado", "productId": 1}`.
 4.  **Listar Favoritos:** `GET /api/favorite/id_do_cliente_criado` com header `Authorization: Bearer <token>`.
