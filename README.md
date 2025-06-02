@@ -179,11 +179,35 @@ Após iniciar a `ApiGateway`, a documentação da API estará disponível em:
   - `productId` (INTEGER)
   - Constraint UNIQUE em (`clientId`, `productId`)
 
+# Explique Suas Escolhas
+
+### 1. Arquitetura de Microsserviços
+
+- **Escolha:** Adotei uma arquitetura de microsserviços, separando o sistema em:
+  - `ApiGateway`: Ponto de entrada e orquestração.
+  - `ApiClient`: Gerenciamento de dados de clientes.
+  - `ApiFavorite`: Gerenciamento de produtos favoritos.
+- **Justificativa:**
+  - **Escalabilidade:** Cada serviço pode ser escalado individualmente conforme a necessidade.
+  - **Manutenibilidade e Evolução:** Alterações em um serviço têm menor probabilidade de impactar outros, facilitando a manutenção e a introdução de novas funcionalidades.
+  - **Resiliência:** Uma falha em um serviço tem menos chance de derrubar todo o sistema.
+
+### 2. Padrão API Gateway
+
+- **Escolha:** Implementei uma API Gateway.
+- **Justificativa:**
+  - **Ponto Único de Entrada:** Simplifica a interface para os clientes da API.
+  - **Centralização de Tarefas:** Autenticação, autorização e rate limiting.
+  - **Desacoplamento:** Os clientes não precisam conhecer os endereços de cada microsserviço individual.
+
+### 3. Autenticação e Autorização
+
+- **Escolha:** JWT para autenticação e um sistema simples de roles (`read`, `write`) para autorização.
+- **Justificativa:**
+  - **JWT:** Padrão amplamente adotado muito usado para microsserviços.
+  - **Roles:** Implementação simples para controle de acesso a diferentes rotas da API.
+
 ## Possíveis Melhorias Futuras
-
-Esta seção lista ideias para evoluir o projeto.
-
-**Gerais do Sistema:**
 
 - **Testes:** Implementar testes unitários, de integração e E2E.
 - **BFF:** Implementar BFF para responses personalizados para web e mobile.
